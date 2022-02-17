@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#"><div id="twoseven-scripts" data-info="Scripts added by TwoSeven extension" style="display: none !important; position: static !important; top: 0px !important; left: 0px !important; width: 0px !important; height: 0px !important;"><script type="text/javascript" id="__tmpScript-931032997" data-added-by-two-seven="1">(function() {
+        window.twoseven = {};
+      })();</script><script type="text/javascript" id="__tmpScript-604942363" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForDOMNode = async function t(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=await i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}async function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const a=new MutationObserver(async o=>{for(const r of o)if("childList"===r.type){const o=Array.from(r.addedNodes),w=await i({type:n,value:s},o,t);if(w)return a.disconnect(),e(w)}});a.observe(t,{childList:!0,subtree:!0})})};
+      })();</script><script type="text/javascript" id="__tmpScript-818020421" data-added-by-two-seven="1">(function() {
+
+    window.twoseven.reportError = function n(e,t,n){"string"==typeof(n=n||{})&&(n={message:n});const{message:o,stack:s}=t;Object.assign(n,{tag:e,error:{message:o,stack:s}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-902876695" data-added-by-two-seven="1">(function() {
+
+    window.twosevenHmsToSecondsOnly = function(str) {
+        var p = str.split(':'),
+            s = 0, m = 1;
+
+        while (p.length > 0) {
+            s += m * parseInt(p.pop(), 10);
+            m *= 60;
+        }
+
+        return s;
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-789548" data-added-by-two-seven="1">(function() {
+        window.twosevenExtLog = function(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+      })();</script><script type="text/javascript" id="__tmpScript-885245802" data-added-by-two-seven="1">(function() {
+
+    document.twosevenGET = function(url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+          if (xmlhttp.status == 200) {
+            callback(null, xmlhttp.responseText);
+          } else {
+            callback('something else other than 200 was returned', '');
+          }
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    };
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-182361816" data-added-by-two-seven="1">(function() {
+
+    window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));var i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-209277746" data-added-by-two-seven="1">(function() {
+        window.twoseven.postTo = async function o(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+      })();</script><script type="text/javascript" id="__tmpScript-41538127" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostTo = function s(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+      })();</script><script type="text/javascript" id="__tmpScript-404520076" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostToParent = function i(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+      })();</script><script type="text/javascript" id="__tmpScript-274540563" data-added-by-two-seven="1">(function() {
+        window.twoseven.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-489214702" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToParent = async function r(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-499351056" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-989535927" data-added-by-two-seven="1">(function() {
+
+    window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+    window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-967817957" data-added-by-two-seven="1">(function() {
+
+    window.attachHistoryListeners = function d(){var e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};var t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+    window.attachHistoryListeners()
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-729024253" data-added-by-two-seven="1">(function() {
+        window.twoseven.once = function c(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-812807037" data-added-by-two-seven="1">(function() {
+
+    window.twoseven.isOnTwoSevenTab = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-71784314" data-added-by-two-seven="1">(function() {
+
+    window.twoseven.isPaused = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-756508280" data-added-by-two-seven="1">(function() {
+        window.twoseven = {};
+      })();</script><script type="text/javascript" id="__tmpScript-465118176" data-added-by-two-seven="1">(function() {
+        window.twoseven.waitForDOMNode = async function t(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=await i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}async function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const a=new MutationObserver(async o=>{for(const r of o)if("childList"===r.type){const o=Array.from(r.addedNodes),w=await i({type:n,value:s},o,t);if(w)return a.disconnect(),e(w)}});a.observe(t,{childList:!0,subtree:!0})})};
+      })();</script><script type="text/javascript" id="__tmpScript-432981353" data-added-by-two-seven="1">(function() {
+
+    window.twoseven.reportError = function n(e,t,n){"string"==typeof(n=n||{})&&(n={message:n});const{message:o,stack:s}=t;Object.assign(n,{tag:e,error:{message:o,stack:s}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-724148586" data-added-by-two-seven="1">(function() {
+
+    window.twosevenHmsToSecondsOnly = function(str) {
+        var p = str.split(':'),
+            s = 0, m = 1;
+
+        while (p.length > 0) {
+            s += m * parseInt(p.pop(), 10);
+            m *= 60;
+        }
+
+        return s;
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-36226257" data-added-by-two-seven="1">(function() {
+        window.twosevenExtLog = function(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+      })();</script><script type="text/javascript" id="__tmpScript-801787792" data-added-by-two-seven="1">(function() {
+
+    document.twosevenGET = function(url, callback) {
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+          if (xmlhttp.status == 200) {
+            callback(null, xmlhttp.responseText);
+          } else {
+            callback('something else other than 200 was returned', '');
+          }
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    };
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-688406998" data-added-by-two-seven="1">(function() {
+
+    window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));var i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-542590256" data-added-by-two-seven="1">(function() {
+        window.twoseven.postTo = async function o(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+      })();</script><script type="text/javascript" id="__tmpScript-11392261" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostTo = function s(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+      })();</script><script type="text/javascript" id="__tmpScript-419103013" data-added-by-two-seven="1">(function() {
+        window.tsExtGetPostToParent = function i(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+      })();</script><script type="text/javascript" id="__tmpScript-188515824" data-added-by-two-seven="1">(function() {
+        window.twoseven.postResponse = async function a(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+      })();</script><script type="text/javascript" id="__tmpScript-388226773" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToParent = async function r(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-434031514" data-added-by-two-seven="1">(function() {
+        window.twoseven.postToTop = async function w(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+      })();</script><script type="text/javascript" id="__tmpScript-287431630" data-added-by-two-seven="1">(function() {
+
+    window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+    window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-453633585" data-added-by-two-seven="1">(function() {
+
+    window.attachHistoryListeners = function d(){var e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};var t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+    window.attachHistoryListeners()
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-892434221" data-added-by-two-seven="1">(function() {
+        window.twoseven.once = function c(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+      })();</script><script type="text/javascript" id="__tmpScript-647299910" data-added-by-two-seven="1">(function() {
+
+    window.twoseven.isOnTwoSevenTab = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-923718652" data-added-by-two-seven="1">(function() {
+
+    window.twoseven.isPaused = async () => {
+      const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+      return result
+    }
+  ;
+      })();</script><script type="text/javascript" id="__tmpScript-707379101" data-added-by-two-seven="1">(function() {
+
+      const modal = document.querySelector('.twoseven-ext-tab-media-modal')
+      const modalCloseBtn = modal.querySelector('.close')
+      function closeModal () {
+        modal.style.display = 'none'
+        const frame = document.querySelector('#twoseven-ext-tab-media-iframe').contentWindow
+        frame.postMessage({
+          __evt_name: 'modal-hide'
+        }, '*')
+      }
+      modalCloseBtn.onclick = closeModal
+
+      window.onmessage = function (e) {
+        if (e.data.__evt_name === 'modal-hide') {
+          closeModal()
+        }
+      }
+
+      window.twoseven.closeTabMediaModal = closeModal
+
+      window.onclick = function (e) {
+        if (e.target.id === 'twoseven-ext-tab-media-modal' && modal.style.display === 'block') {
+            closeModal()
+        }
+      }
+    ;
+      })();</script></div><head>
+    <title>Darya Daneshmand::Portfolio Website</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="main.css">
+    <!--[if lte IE 8]><link rel="stylesheet" href="main.css" /><![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href="main.css" /><![endif]-->
+    <link rel="icon" href="images/favicon.ico">
+    <meta property="og:title" content="Darya Daneshmand::Portfolio Website">
+    <meta property="og:description" content="Robotic Projects Portfolio Website">
+    <meta property="og:url" content="https://njkaiser.github.io/portfolio">
+    <meta property="og:image" content="images/porfolio_thumbnail.png">
+    <link href="chrome-extension://cjdnfmjmdligcpfcekfmenlhiopehjkd/web_resources/modal/modal.css" rel="stylesheet" id="__tmpStyle"></head>
+<body class="landing">
+
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1><a href="index.html">Darya Daneshmand</a></h1>
+        <nav id="nav">
+            <ul>
+                <li class="special">
+                    <a href="#menu" class="menuToggle"><span>Menu</span></a>
+
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section id="banner">
+        <div class="inner">
+            <h2>Darya Daneshmand</h2>
+            <p>BS in Neuroscience & Journalism Candidate; Segal Design Certificate<br>
+                Northwestern University</p>
+            <!-- <ul class="actions"> -->
+            <!-- <li><a href="#" class="button special">Make this button do something!</a></li> -->
+            <!-- </ul> -->
+        </div>
+        <a href="#projects" class="more scrolly">View Projects</a>
+    </section>
+
+
+    <!-- projects -->
+    <section id="projects" class="wrapper alt style2">
+
+        <section class="spotlight">
+            <div class="image"><a href="autonomy.html"><img src="images/autonomy.gif" alt="Queen Conch Tracking Device"></a></div>
+            <div class="content">
+                <h2><a href="autonomy.html">Queen Conch Tracking Device</a></h2>
+                <p>In order to track conch movement, my team of three other design students worked with researchers at Shedd aquarium to create a new snail tracker using an accelerometer sensor package, analyzing data with Arduino so that researchers could
+                    determine what areas would be best suited for designation as Marine Protected Areas (MPAs).</p>
+            </div>
+        </section>
+
+        <section class="spotlight">
+            <div class="image"><a href="cancer.html"><img src="images/cancer.gif" alt="Published Work Img"></a></div><div class="content">
+            <h2><a href="cancer.html">Published Work</a></h2>
+            <p>Writing offers a means to explore my interests, and has proven itself a valuable tool in teaching how to communicate effectively while practicing authentic self-expression. Interviewing those of different communities, backgrounds, and
+                interests has taught me a great deal. Here are a few of my published pieces.</p>
+        </div>
+        </section>
+
+        <section class="spotlight">
+            <div class="image"><a href="compviz.html"><img src="images/compviz.jpg" alt="Digital Art & Designs"></a></div>
+            <div class="content">
+                <h2><a href="compviz.html">Digital Designs</a></h2>
+                <p>Whether I'm creating promotional material for Northwestern's student-run music festival through Mayfest Productions, creating article headlines, or just playing with my Adobe Suite, my mind is always at rest and in focus. My interest
+                    in art was born of a realization of its therapeutic value, since art conveys meaning in a way that words cannot. As such, its power to do so has not only helped me communicate to others, but also to better understand myself.</p>
+            </div>
+        </section>
+
+        <section class="spotlight">
+            <div class="image"><a href="mlai.html"><img src="images/mlai.jpg" alt="Data viz img"></a></div>
+            <div class="content">
+                <h2><a href="mlai.html">Data Visualization</a></h2>
+                <p>data viz blah blah blah.</p>
+            </div>
+        </section>
+
+        <section class="spotlight">
+            <div class="image"><a href="baxter.html"><img src="images/baxter.jpg" alt="project img"></a></div>
+            <div class="content">
+                <h2><a href="baxter.html">Northwestern Undergraduate Research Journal (NURJ) Projects</a></h2>
+                <p>Accessibility in research can be fostered in more ways than one can count, as I've learned through leading the online sector of the NURJ. Seeing research manifest itself in areas where it was not labeled as such, I decided to create
+                    a team project investigating the creation of art through the framework of research methodology. Noting the general anxieties of first-time pursuers of research grants and wanting to strengthen my ability to present such information
+                    in a digestible way, I teamed up with NURJ Development Manager Kevin Bye to create a series of video interview clips interspersed with written segments to provide peer guidance. I learned how to write comedy sketches in the process!
+                    Channeling the aggravation fueled by the presentation of figures in neuroscience papers, I set my team upon the task of spending a quarter researching and featuring collaborations between artists, data scientists, and scientific researchers. </p>
+            </div>
+        </section>
+
+        <section class="spotlight">
+            <div class="image"><a href="advancedcontrol.html"><img src="images/control.png" alt="project img"></a></div>
+            <div class="content">
+                <h2><a href="advancedcontrol.html">Project Header</a></h2>
+                <p>project description blah blah blah.</p>
+            </div>
+        </section>
+
+        <section class="spotlight">
+            <div class="image"><a href="prisum.html"><img src="images/prisum.jpg" alt=""></a></div>
+            <div class="content">
+                <h2><a href="prisum.html">Project Header</a></h2>
+                <p>project description blah blah blah</p>
+            </div>
+        </section>
+
+        <section class="spotlight">
+            <div class="image"><a href="cnc.html"><img src="images/cnc.gif" alt="project img"></a></div>
+            <div class="content">
+                <h2><a href="cnc.html">Project Header</a></h2>
+                <p>project description blah blah blah</p>
+            </div>
+        </section>
+
+    </section>
+
+
+    <section id="about" class="wrapper style1 special">
+        <div class="inner">
+            <header class="major">
+                <div class="row">
+                    <div class="6u 12u$(medium)">
+                        <h2>Interests</h2>
+                        <ul>
+                            <li>Biomimicry</li>
+                            <li>Neuroscience & Scientific Research</li>
+                            <li>Writing</li>
+                            <li>Digital Art</li>
+                            <li>JJJ</li>
+                            <li>Why did i put this many bullets</li>
+                            <li>I probably have two more interests tho</li>
+                            <li>Shop Work</li>
+                            <li>Ethics & Technology</li>
+                            <li>Web Design</li>
+                            <li>Reading</li>
+                            <li>Open Source</li>
+                        </ul>
+                    </div>
+                    <div class="6u$ 12u$(medium)">
+                        <h2>About</h2>
+                        <p align="left">Currently pursuing etc etc blah blah some other shit ok nice nice.</p>
+                        <p align="right"><b>-Darya</b></p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <p align="left"><b>Want to learn more?</b> Check out my <a href="https://www.linkedin.com/in/darya-daneshmand/" target="blank">LinkedIn profile</a>, download my <a href="resume.pdf" target="blank">résumé</a>, or send me an <a href="mailto:daryadaneshmand2023@u.northwestern.edu">e-mail</a> using the links below.</p>
+
+            </header>
+            <ul class="icons major">
+                <li><a href="https://www.linkedin.com/in/darya-daneshmand/" target="blank" class="icon fa-linkedin-square fa-3x"><span class="label">LinkedIn</span></a></li>
+                <li><a href="resume.pdf" target="blank" class="icon fa-file-pdf-o fa-3x"><span class="label">Resume</span></a></li>
+                <li><a href="mailto:daryadaneshmand2023@u.northwestern.edu" class="icon fa-envelope-o fa-3x"><span class="label">Email</span></a></li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- Three -->
+    <!-- <section id="three" class="wrapper style3 special"> -->
+    <!-- <div class="inner"> -->
+    <!-- <header class="major"> -->
+    <!-- <h2>Accumsan mus tortor nunc aliquet</h2>
+    <p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend<br />
+    fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
+</header> -->
+    <!-- <ul class="features">
+        <li class="icon fa-paper-plane-o">
+            <h3>Arcu accumsan</h3>
+            <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+        </li>
+        <li class="icon fa-laptop">
+            <h3>Ac Augue Eget</h3>
+            <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+        </li>
+        <li class="icon fa-code">
+            <h3>Mus Scelerisque</h3>
+            <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+        </li>
+        <li class="icon fa-headphones">
+            <h3>Mauris Imperdiet</h3>
+            <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+        </li>
+        <li class="icon fa-heart-o">
+            <h3>Aenean Primis</h3>
+            <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+        </li>
+        <li class="icon fa-flag-o">
+            <h3>Tortor Ut</h3>
+            <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+        </li>
+    </ul>
+</div>
+</section> -->
+
+
+    <!-- contact -->
+    <section id="contact" class="wrapper style4">
+        <div class="inner">
+            <header>
+                <h2>Contact</h2>
+                <p>To get the conversation started, use the form below (or, if you'd rather, send me an email or message me on LinkedIn). Feel free to contact me about career opportunities, relevant events such as conventions or conferences, or volunteer opportunities!</p>
+                <!-- <h4>Contact Form</h4> -->
+                <form method="POST" action="https://formspree.io/f/xknpbgrv">
+                    <div class="row uniform">
+                        <div class="6u 12u$(xsmall)">
+                            <input type="text" name="name" id="name" value="" placeholder="Name">
+                        </div>
+                        <div class="6u$ 12u$(xsmall)">
+                            <input type="email" name="email" id="email" value="" placeholder="Email Address">
+                        </div>
+                        <div class="6u$ 12u$(small)">
+                            <input type="checkbox" id="ishuman" name="ishuman" unchecked="">
+                            <label for="ishuman">Not a robot</label>
+                        </div>
+                        <div class="12u$">
+                            <textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
+                        </div>
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li><input type="submit" value="Send Message" class="special"></li>
+                                <li><input type="reset" value="Reset"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </header>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://github.com/daryadaneshmand" target="blank" class="icon fa-github fa-lg"><span class="label">Github</span></a></li>
+            <li><a href="https://www.linkedin.com/in/darya-daneshmand/" target="blank" class="icon fa-linkedin fa-lg"><span class="label">Email</span></a></li>
+            <li><a href="mailto:daryadaneshmand2023@u.northwestern.edu" class="icon fa-envelope-o fa-lg"><span class="label">Email</span></a></li>
+            <!-- <li><a href="#" class="icon fa-youtube-play"><span class="label">YouTube</span></a></li> -->
+            <!-- <li><a href="#" class="icon fa-file-pdf-o"><span class="label">Resume</span></a></li> -->
+        </ul>
+        <ul class="copyright">
+            <li>Template: <a href="https://html5up.net/spectral"> SPECTRAL</a></li><li>From: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
+
+
+
+<div id="menu">
+    <ul>
+        <li><a href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Home</a></li>
+        <li><a href="#projects" class="more scrolly" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Projects</a></li>
+        <li><a href="#about" class="more scrolly" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">About</a></li>
+        <li><a href="#contact" class="more scrolly" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Contact</a></li>
+    </ul>
+    <a href="#menu" class="close" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></a></div><div>
+    <div id="twoseven-ext-tab-media-modal" class="twoseven-ext-tab-media-modal" style="display: none;">
+        <!-- Modal content -->
+        <div class="twoseven-ext-tab-media-modal-content">
+            <div class="iframe-container" style="height: 100%; width: 100%;">
+                <span class="close">×</span>
+            </div>
+        </div>
+    </div></div>
+
+
+
+
+</body>
+</html>
